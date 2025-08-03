@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <!-- See https://aka.ms/dotnet/msbuild/customize for more details on customizing your build -->
+  <PropertyGroup Label="Sdk">
+	  <DefaultNetCoreTargetFramework>net8.0</DefaultNetCoreTargetFramework>
+	  <IsPackable>false</IsPackable>
+	  <IsTestProject>$(MSBuildProjectName.EndsWith('.Tests'))</IsTestProject>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugType>full</DebugType>
+    <DefineConstants>DEBUG;TRACE;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <Optimize>true</Optimize>
+    <DebugType>embedded</DebugType>
+    <DefineConstants>TRACE;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Label="Add Internals Visibility" Condition="'$(IsTestProject)' != 'true'">
+    <InternalsVisibleTo Include="$(MSBuildProjectName).Tests" />
+  </ItemGroup>
+
+  <PropertyGroup Label="Code Coverage" Condition="'$(IsTestProject)' == 'true'">
+    <RunSettingsFilePath>$(SolutionDir)\.runsettings</RunSettingsFilePath>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Label="General Info">
+	<Authors>Kosala (KP) Perera</Authors>
+	<Company>Alertbox Inc.</Company>
+	<Copyright>Copyright (c) $([System.DateTime]::Now.ToString('yyyy')) $(Company)</Copyright>
+	<RepositoryUrl>https://github.com/alertbox/try-dotnet-on-aws</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+</Project>
