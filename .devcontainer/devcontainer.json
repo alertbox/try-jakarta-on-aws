@@ -1,7 +1,5 @@
 {
-  "name": ".NET on AWS",
-  // See complete list https://hub.docker.com/_/microsoft-dotnet-sdk/
-  // Or https://mcr.microsoft.com/v2/dotnet/sdk/tags/list
+  "name": "Jakarta on AWS",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [
@@ -17,35 +15,19 @@
     "ghcr.io/devcontainers/features/common-utils:2": {
       "configureZshAsDefaultShell": true
     },
-    "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "moby": false,
-      "dockerDashComposeVersion": "v2"
+      "azureDnsAutoDetection": false,
+      "installDockerBuildx": false,
+      "installDockerComposeSwitch": false
     },
-    "ghcr.io/devcontainers/features/dotnet:2": "lts",
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/java:1": {},
     "ghcr.io/devcontainers/features/aws-cli:1": {},
-    "ghcr.io/alertbox/aws/sam:1": {},
-    "ghcr.io/devcontainers/features/node:1": "lts",
-    "ghcr.io/alertbox/oven-sh/bun:1": {
-      "packages": "serverless cdk"
-    },
-    "ghcr.io/dapr/cli/dapr-cli:0": {},
-    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
-      "minikube": "none"
-    },
-    // Read more https://github.com/hashicorp/vscode-terraform/issues/1524#issuecomment-1614892272
-    "ghcr.io/alertbox/opentofu/tofu:1": {}
-  },
-  "containerEnv": {
-    // Set dotnet CLI environment settings.
-    "DOTNET_RUNNING_IN_CONTAINER": "1",
-    "DOTNET_USE_POLLING_FILE_WATCHER": "1",
-    "DOTNET_CLI_TELEMETRY_OPTOUT": "1",
-    "DOTNET_GENERATE_ASPNET_CERTIFICATE": "1",
-    "DOTNET_NOLOGO": "1",
-    // Set ASP.NET environment settings.
-    "ASPNETCORE_URLS": "http://+:8080;https://+:8081",
-    "ASPNETCORE_ENVIRONMENT": "Development"
+    "ghcr.io/devcontainers/features/terraform:1": {
+      // Read more https://github.com/devcontainers/features/issues/1388
+      "tflint": "none"
+    }
   },
   // Configure tool-specific properties.
   "customizations": {
@@ -53,67 +35,54 @@
     "vscode": {
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
-        // .NET and C#
-        "ms-dotnettools.csdevkit",
+        // Java and Quarkus
+        "redhat.vscode-quarkus",
+        "humao.rest-client",
         // AWS and Kubernetes
         "AmazonWebServices.aws-toolkit-vscode",
         "AmazonWebServices.amazon-q-vscode",
-        "ms-kubernetes-tools.vscode-kubernetes-tools",
-        "HashiCorp.terraform",
         "mads-hartmann.bash-ide-vscode",
-        "humao.rest-client",
-        // Db
-        "ms-mssql.mssql",
-        "ms-mssql.sql-database-projects-vscode",
-        // AI and Copilot
-        "GitHub.copilot",
         // Misc.
         "EditorConfig.EditorConfig",
         "redhat.vscode-yaml",
-        "editorconfig.editorconfig",
         "albert.tabout",
         "streetsidesoftware.code-spell-checker",
         "redhat.fabric8-analytics"
-
       ],
       // Set *default* container specific settings.json values on container create.
       "settings": {
+        "java.configuration.updateBuildConfiguration": "interactive",
+        "quarkus.tools.alwaysShowWelcomePage": false,
         "amazonQ.telemetry": false,
         "aws.telemetry": false,
-        "aws.samcli.enableCodeLenses": true,
-        "github.copilot.chat.agent.runTasks": true,
-        "github.copilot.chat.codeGeneration.useInstructionFiles": true,
-        "debug.internalConsoleOptions": "neverOpen",
-        "diffEditor.diffAlgorithm": "advanced",
-        "diffEditor.experimental.showMoves": true,
-        "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
-        "dotnet.formatting.organizeImportsOnFormat": true,
         "files.watcherExclude": {
-          "**/bin/**": true,
-          "**/obj/**": true
+          "**/target/**": true,
+          "**/.mvn/**": true,
+          "**/.terraform/**": true,
+          "**/.terragrunt/**": true
         },
+        "cSpell.dictionaries": [
+          "spellignores"
+        ],
+        "cSpell.dictionaryDefinitions": [
+          {
+            "name": "spellignores",
+            "path": "${workspaceFolder}/.spellignores"
+          }
+        ],
+        "cSpell.useGitignore": true,
         "redhat.telemetry.enabled": false,
-        "rest-client.previewOption": "exchange",
-        "scm.defaultViewMode": "tree",
-        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.defaultProfile.linux": "zsh"
       }
     }
   },
   // Use 'updateContentCommand' to run commands after the container is successfully created.
   "updateContentCommand": {
-    "dev-certs": "dotnet dev-certs https --clean && dotnet dev-certs https -t",
-    "dapr-setup": "dapr uninstall --all && dapr init",
-    "clean": "rm -rf **/bin **/obj"
   },
-  // "mounts": [
-  //   {
-  //     "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.aws/credentials",
-  //     "target": "/home/vscode/.aws/credentials",
-  //     "type": "bind"
-  //   }
-  // ]
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws,target=/root/.aws,type=bind,consistency=cached"
+  ],
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": {
-    "restore": "dotnet restore --no-cache --force || exit 0"
   }
 }
