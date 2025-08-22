@@ -62,12 +62,12 @@
           "**/.terragrunt/**": true
         },
         "cSpell.dictionaries": [
-          "spellignores"
+          "ignore"
         ],
         "cSpell.dictionaryDefinitions": [
           {
-            "name": "spellignores",
-            "path": "${workspaceFolder}/.spellignores"
+            "name": "ignore",
+            "path": "${workspaceFolder}/.spellcheckignore"
           }
         ],
         "cSpell.useGitignore": true,
