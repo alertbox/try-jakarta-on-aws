@@ -24,10 +24,7 @@
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/java:1": {},
     "ghcr.io/devcontainers/features/aws-cli:1": {},
-    "ghcr.io/devcontainers/features/terraform:1": {
-      // Read more https://github.com/devcontainers/features/issues/1388
-      "tflint": "none"
-    }
+    "ghcr.io/alertbox/opentofu/tofu:1": {}
   },
   // Configure tool-specific properties.
   "customizations": {
@@ -55,12 +52,6 @@
         "quarkus.tools.alwaysShowWelcomePage": false,
         "amazonQ.telemetry": false,
         "aws.telemetry": false,
-        "files.watcherExclude": {
-          "**/target/**": true,
-          "**/.mvn/**": true,
-          "**/.terraform/**": true,
-          "**/.terragrunt/**": true
-        },
         "cSpell.dictionaries": [
           "ignore"
         ],
@@ -76,13 +67,11 @@
       }
     }
   },
-  // Use 'updateContentCommand' to run commands after the container is successfully created.
   "updateContentCommand": {
   },
   "mounts": [
     "source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws,target=/root/.aws,type=bind,consistency=cached"
   ],
-  // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": {
   }
 }

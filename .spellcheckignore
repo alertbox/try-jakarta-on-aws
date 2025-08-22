@@ -6,7 +6,4 @@ moby
 mvnw
 quarkus
 spellcheckignore
-sqlproj
 tabout
-terragrunt
-tflint
