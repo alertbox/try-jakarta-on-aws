@@ -4,13 +4,12 @@ Start a dev container and get to developing Quarkus and Jakarta apps leveraging 
 
 [<img width="100%"
       alt="AWS SDK for Java"
-      src="https://github.com/alertbox/try-jakarta-on-aws/assets/958227/befa373d-72c1-4816-ade8-3abba3016b45" />][aws-sdk-for-dotnet]
+      src="https://github.com/user-attachments/assets/e68b9301-fd7d-4446-a4b0-566c4254a057" />][aws-sdk-for-java]
 
 [Learn more about AWS SDK for Java][aws-sdk-for-java]
 
 [aws-services-for-java]: https://github.com/aws/aws-sdk-java-v2#readme
 [aws-sdk-for-java]: https://docs.aws.amazon.com/sdk-for-java/
-
 
 ## Quick Start
 
