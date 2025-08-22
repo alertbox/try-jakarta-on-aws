@@ -11,28 +11,20 @@ charset = utf-8
 end_of_line = lf
 trim_trailing_whitespace = true
 
-# Code files
-[*.xaml]
-indent_size = 4
-
 # Xml config files
 [*.{props,targets,ruleset,config}]
+indent_size = 2
+
+# XML files
+[*.xml]
 indent_size = 2
 
 # JSON files
 [*.{json,yaml,yml,toml}]
 indent_size = 2
 
-# Xml files
-[*.xml]
-indent_size = 2
-
-# C# files
-[*.{java,kt}]
-# Indentation and spacing
+# Settings for Java and Kotlin files
+[*.{java,kt,kts}]
 indent_size = 4
-tab_width = 4
-insert_final_newline = true
-
-# Newline preference
+trim_trailing_whitespace = true
 insert_final_newline = true
