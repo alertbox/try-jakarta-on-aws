@@ -1,15 +1,14 @@
 # Try Jakarta on AWS
 
-Start a dev container and get to developing Quarkus and Jakarta apps leveraging a [variety of Amazon services (or AWS)][aws-services-for-java].
+Start a dev container and get to developing Quarkus and Jakarta apps leveraging a [variety of Amazon services](https://quarkus.io/guides/#q=aws) (or AWS).
 
 [<img width="100%"
       alt="AWS SDK for Java"
       src="https://github.com/user-attachments/assets/e68b9301-fd7d-4446-a4b0-566c4254a057" />][aws-sdk-for-java]
 
-[Learn more about AWS SDK for Java][aws-sdk-for-java]
+[Learn more about AWS SDK for Java](https://docs.aws.amazon.com/sdk-for-java/)
 
-[aws-services-for-java]: https://github.com/aws/aws-sdk-java-v2#readme
-[aws-sdk-for-java]: https://docs.aws.amazon.com/sdk-for-java/
+
 
 ## Quick Start
 
@@ -20,15 +19,15 @@ You can also run this repo locally by following these repetitive steps:
 1. You want to ensure the repo is cloned to your local machine, and
 2. Open it in VS Code.
 
->  See [Docker Images][docker-images] for other variations that suites your hardware.
+>  See [Docker Images](https://mcr.microsoft.com/en-us/catalog?search=devcontainers) for other variations that suites your hardware.
 
-[docker-images]: https://mcr.microsoft.com/en-us/catalog?search=devcontainers
+
 
 ## Troubleshooting
 
-If you have any technical problems with dev containers, you are better off asking [Dev Containers Support][devcontainers-support] directly, since you'll end up getting a much faster response back that way.
+If you have any technical problems with dev containers, you are better off asking [Dev Containers Support](https://github.com/devcontainers/community/discussions/3) directly, since you'll end up getting a much faster response back that way.
 
-[devcontainers-support]: https://github.com/devcontainers/community/discussions/3
+
 
 ### Known Issues
 
@@ -37,11 +36,11 @@ If you have any technical problems with dev containers, you are better off askin
 
 ## Contributing
 
-The official repo to contribute would be [@devcontainers][devcontainers-repo].
+The official repo to contribute would be [@devcontainers](https://github.com/devcontainers).
 
 Have a suggestion or a bug fix? Just open a pull request or an issue. Include clear and simple instructions possible.
 
-[devcontainers-repo]: https://github.com/devcontainers
+
 
 ## License
 
